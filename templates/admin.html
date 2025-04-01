@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Rahul's Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <style>
+        /* --- Paste the CSS from the previous FINAL 'admin.html' version here --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { /* Color variables */
+            --primary-color: #3498db; --secondary-color: #2c3e50; --admin-bg: #e8edf3; --card-bg: #ffffff;
+            --button-bg: #ffffff; --button-hover-bg: #f0f4f8; --button-active-bg: #e4e9ef; --button-border: #c5d2e0;
+            --button-hover-border: #a8b9cc; --text-dark: #34495e; --text-light: #555; --success-bg: #d4edda;
+            --success-text: #155724; --success-border: #c3e6cb; --error-bg: #f8d7da; --error-text: #721c24;
+            --error-border: #f5c6cb; --sos-color: #e74c3c; --low-fuel-color: #f39c12; --discomfort-color: #f1c40f;
+        }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--admin-bg); color: var(--text-dark); line-height: 1.6; padding: 20px; }
+        .admin-container { max-width: 850px; margin: 20px auto; background: var(--card-bg); padding: 35px 45px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 40, 80, 0.1); border: 1px solid #d8e0e8; }
+        .admin-header { text-align: center; margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px solid #e0e7ef; }
+        .admin-header h1 { color: var(--secondary-color); font-weight: 600; font-size: 1.9em; }
+        .admin-header h1 i { margin-right: 12px; color: var(--primary-color);}
+        .admin-header p { font-size: 1em; color: var(--text-light); margin-top: 8px; }
+        .control-section { margin-bottom: 35px; padding: 25px; background-color: #f8faff; border-radius: 10px; border: 1px solid #e4eaf3; }
+        .control-section:last-of-type { margin-bottom: 25px; }
+        .control-section h2 { font-size: 1.25em; color: var(--text-dark); margin-bottom: 25px; font-weight: 600; border-bottom: 1px solid #dde4ed; padding-bottom: 12px; display: flex; align-items: center; }
+        .control-section h2 i { margin-right: 10px; color: var(--primary-color); width: 22px; text-align: center;}
+        .button-group { display: flex; flex-wrap: wrap; gap: 15px; justify-content: flex-start; }
+        .control-button {
+            padding: 12px 20px; font-size: 1em; font-weight: 500; cursor: pointer; border: 1px solid var(--button-border); background-color: var(--button-bg); color: var(--text-dark); border-radius: 8px; transition: all 0.25s ease;
+            flex-grow: 0; min-width: 120px; text-align: center; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+        }
+        .control-button i { margin-right: 8px; font-size: 0.95em; }
+        .control-button:hover { background-color: var(--button-hover-bg); border-color: var(--button-hover-border); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
+        .control-button:active { background-color: var(--button-active-bg); transform: translateY(0px); box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        .control-button.active { background-color: var(--primary-color); color: white; border-color: #2980b9; font-weight: 600; box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3); }
+        .control-button.active:hover { background-color: #2980b9; transform: translateY(0); box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3); }
+        .control-button.alert-button.active.sos { background-color: var(--sos-color); border-color: #c0392b;} .control-button.alert-button.active.sos:hover { background-color: #c0392b;}
+        .control-button.alert-button.active.low-fuel { background-color: var(--low-fuel-color); border-color: #d35400;} .control-button.alert-button.active.low-fuel:hover { background-color: #d35400;}
+        .control-button.alert-button.active.discomfort { background-color: var(--discomfort-color); color: #333; border-color: #cfa808;} .control-button.alert-button.active.discomfort:hover { background-color: #cfa808;}
+        .status-bar { margin-top: 30px; padding: 12px 18px; background-color: #f8f9fa; border: 1px solid #e3e6e9; border-radius: 8px; font-size: 0.95em; color: var(--text-light); text-align: center; display: flex; justify-content: center; align-items: center; }
+        #adminStatus { font-weight: 600; margin-right: 5px; }
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-left: 8px; transition: background-color 0.3s ease; }
+        .dot.connected { background-color: #2ecc71; } .dot.disconnected { background-color: #e74c3c; } .dot.connecting { background-color: #f39c12; animation: blink 1s infinite alternate; }
+        .feedback { margin-top: 20px; text-align: center; min-height: 24px; font-size: 0.95em; padding: 10px 15px; border-radius: 8px; opacity: 0; transition: opacity 0.5s ease-in-out, background-color 0.3s, color 0.3s; font-weight: 500; }
+        .feedback.visible { opacity: 1; }
+        .feedback.success { background-color: var(--success-bg); color: var(--success-text); border: 1px solid var(--success-border); }
+        .feedback.error { background-color: var(--error-bg); color: var(--error-text); border: 1px solid var(--error-border); }
+        @keyframes blink { from { opacity: 1; } to { opacity: 0.5; } }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1><i class="fa-solid fa-user-shield"></i> Admin Control Panel</h1>
+            <p id="adminVehicleInfo">{{ current_state.vehicle_info | default('Vehicle Info Unavailable') }}</p>
+        </header>
+
+        <!-- Location Section -->
+        <section class="control-section">
+            <h2><i class="fa-solid fa-map-location-dot"></i> Update Location</h2>
+            <div class="button-group location-buttons">
+                {% for loc in locations %}
+                    <button class="control-button location-button" data-location="{{ loc }}">{{ loc }}</button>
+                {% else %}
+                    <p style="color: var(--error-color); width: 100%; text-align: center;">Error: No locations defined in backend.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Direction Section -->
+        <section class="control-section">
+            <h2><i class="fa-solid fa-compass"></i> Set Direction</h2>
+            <div class="button-group direction-buttons">
+                 <button class="control-button direction-button" data-direction="home_to_college">
+                    <i class="fa-solid fa-graduation-cap"></i> Home to College
+                </button>
+                 <button class="control-button direction-button" data-direction="college_to_home">
+                     <i class="fa-solid fa-house"></i> College to Home
+                 </button>
+            </div>
+        </section>
+
+        <!-- Fuel Level Section -->
+        <section class="control-section">
+             <h2><i class="fa-solid fa-gas-pump"></i> Update Fuel Level</h2>
+             <div class="button-group fuel-buttons">
+                 {% for i in range(1, 6) %}
+                 <button class="control-button fuel-button" data-fuel="{{ i }}">
+                     <i class="fa-solid {% if i <= 1 %}fa-battery-empty text-danger{% elif i <= 2 %}fa-battery-quarter text-warning{% elif i <= 3 %}fa-battery-half text-warning{% elif i <= 4 %}fa-battery-three-quarters text-success{% else %}fa-battery-full text-success{% endif %}"></i> Level {{ i }}
+                 </button>
+                 {% endfor %}
+             </div>
+         </section>
+
+        <!-- Alerts Section -->
+        <section class="control-section">
+            <h2><i class="fa-solid fa-bell"></i> Manage Alerts</h2>
+            <div class="button-group alert-buttons">
+                 <button class="control-button alert-button sos" id="sosButton" data-alert="sos">
+                     <i class="fa-solid fa-triangle-exclamation"></i> SOS
+                 </button>
+                 <button class="control-button alert-button low-fuel" id="lowFuelButton" data-alert="low_fuel">
+                     <i class="fa-solid fa-faucet-drip"></i> Low Fuel
+                 </button>
+                  <button class="control-button alert-button discomfort" id="discomfortButton" data-alert="discomfort">
+                     <i class="fa-solid fa-face-tired"></i> Discomfort
+                 </button>
+            </div>
+        </section>
+
+        <div class="status-bar">
+            Connection: <span id="adminStatus">Connecting</span> <span id="adminDot" class="dot connecting"></span>
+        </div>
+        <div class="feedback" id="feedbackArea"></div>
+
+    </div>
+
+    <script>
+        // Ensure Socket.IO library is loaded before connecting
+        const socket = io({
+             reconnectionAttempts: 5,
+             timeout: 15000,
+             transports: ['websocket', 'polling']
+        });
+
+        // --- DOM Elements Cache ---
+        let uiElements = {}; // Use let as it's assigned in DOMContentLoaded
+        function cacheAdminElements() {
+            uiElements = {
+                locationButtons: document.querySelectorAll('.location-button'),
+                directionButtons: document.querySelectorAll('.direction-button'),
+                fuelButtons: document.querySelectorAll('.fuel-button'),
+                sosButton: document.getElementById('sosButton'),
+                lowFuelButton: document.getElementById('lowFuelButton'),
+                discomfortButton: document.getElementById('discomfortButton'),
+                adminStatus: document.getElementById('adminStatus'),
+                adminDot: document.getElementById('adminDot'),
+                feedbackArea: document.getElementById('feedbackArea'),
+                adminVehicleInfo: document.getElementById('adminVehicleInfo')
+            };
+             if (!uiElements.locationButtons || uiElements.locationButtons.length === 0) {
+                 console.warn("ADMIN: Location buttons not found during caching.");
+             }
+        }
+
+
+        // --- State & UI Update Function ---
+        let currentState = {};
+        let feedbackTimeout = null;
+
+        function clearFeedback() {
+             if (feedbackTimeout) clearTimeout(feedbackTimeout);
+             if (uiElements.feedbackArea) {
+                 uiElements.feedbackArea.textContent = '';
+                 uiElements.feedbackArea.className = 'feedback';
+                 uiElements.feedbackArea.classList.remove('visible');
+             }
+        }
+
+        function showFeedback(message, isError = false, duration = 5000) {
+             clearFeedback();
+             if (uiElements.feedbackArea) {
+                 uiElements.feedbackArea.textContent = message;
+                 uiElements.feedbackArea.className = `feedback ${isError ? 'error' : 'success'} visible`;
+                 feedbackTimeout = setTimeout(clearFeedback, isError ? duration + 1000 : duration);
+             } else {
+                 console.error("ADMIN: Feedback area element not found!");
+             }
+        }
+
+        function updateAdminUI(state) {
+             // Ensure elements are cached before updating UI
+             if (Object.keys(uiElements).length === 0) {
+                 console.warn("ADMIN: Elements not cached yet, skipping UI update.");
+                 return;
+             }
+             if (!state || typeof state !== 'object') {
+                 console.error("ADMIN: Invalid state data for UI update:", state);
+                 showFeedback("Error: Invalid state data received.", true, 10000);
+                 return;
+             }
+            console.debug("ADMIN: Updating UI with state:", state);
+            currentState = state;
+
+            if (uiElements.adminVehicleInfo && typeof state.vehicle_info === 'string' && uiElements.adminVehicleInfo.textContent !== state.vehicle_info) {
+                uiElements.adminVehicleInfo.textContent = state.vehicle_info;
+            }
+
+            const updateButtonGroup = (buttons, dataKey, activeValue) => {
+                 if (!buttons) return;
+                 buttons.forEach(btn => {
+                    btn.classList.toggle('active', String(btn.dataset[dataKey]) === String(activeValue));
+                 });
+             };
+
+            updateButtonGroup(uiElements.locationButtons, 'location', state.current_location);
+            updateButtonGroup(uiElements.directionButtons, 'direction', state.direction);
+            updateButtonGroup(uiElements.fuelButtons, 'fuel', state.fuel_level);
+
+            uiElements.sosButton?.classList.toggle('active', !!state.sos_active);
+            uiElements.lowFuelButton?.classList.toggle('active', !!state.low_fuel_alert);
+            uiElements.discomfortButton?.classList.toggle('active', !!state.discomfort_alert);
+        }
+
+        // --- Socket Event Listeners ---
+        socket.on('connect', () => {
+            console.info('ADMIN: Socket connected! SID:', socket.id);
+            if(uiElements.adminStatus) uiElements.adminStatus.textContent = 'Connected';
+            if(uiElements.adminDot) uiElements.adminDot.className = 'dot connected';
+            clearFeedback();
+            // Parse initial state embedded in HTML
+            try {
+                const rawInitialState = document.getElementById('initialAdminStateData')?.textContent;
+                const initialState = rawInitialState ? JSON.parse(rawInitialState) : {};
+                console.info("ADMIN: Initial state parsed:", initialState);
+                if (initialState && typeof initialState === 'object' && Object.keys(initialState).length > 0) {
+                    updateAdminUI(initialState);
+                } else { console.warn("ADMIN: Initial state empty/invalid."); }
+            } catch (e) {
+                 console.error("ADMIN: Error parsing initial state:", e);
+                 showFeedback("Error loading initial page data.", true, 10000);
+            }
+        });
+        socket.on('disconnect', (reason) => {
+            console.warn('ADMIN: Socket disconnected:', reason);
+            if(uiElements.adminStatus) uiElements.adminStatus.textContent = 'Disconnected';
+            if(uiElements.adminDot) uiElements.adminDot.className = 'dot disconnected';
+            showFeedback(`Disconnected: ${reason}. Reconnecting...`, true, 10000);
+        });
+        socket.on('connect_error', (error) => {
+            console.error('ADMIN: Connection Error:', error);
+            if(uiElements.adminStatus) uiElements.adminStatus.textContent = 'Connection Failed';
+            if(uiElements.adminDot) uiElements.adminDot.className = 'dot disconnected';
+            showFeedback(`Connection Error: ${error.message || error}. Retrying...`, true, 10000);
+        });
+
+        // Primary listener for state changes broadcast by server
+        socket.on('state_update', (newState) => {
+            console.debug("ADMIN: Received 'state_update' event.");
+            updateAdminUI(newState);
+        });
+
+         // Feedback specific to this admin's actions
+         socket.on('admin_action_success', (data) => {
+            console.info('ADMIN: Action Success:', data);
+            const actionDisplay = (data.action || 'Action').replace(/_/g, ' ');
+            showFeedback(`${actionDisplay.charAt(0).toUpperCase() + actionDisplay.slice(1)} successful.`, false);
+        });
+        socket.on('admin_action_error', (data) => {
+            console.error('ADMIN: Action Error:', data);
+             const actionDisplay = (data.action || 'Action').replace(/_/g, ' ');
+            showFeedback(`Error during ${actionDisplay}: ${data.message || 'Unknown error.'}`, true);
+        });
+
+        // --- Button Click Handlers (Attach after DOM is ready) ---
+        function attachButtonHandlers() {
+            const emitAdminAction = (eventName, payload = {}) => {
+                 if (!socket.connected) { showFeedback("Not connected to server.", true); return; }
+                 clearFeedback();
+                 console.debug(`ADMIN: Emitting ${eventName}`, payload);
+                 socket.emit(eventName, payload);
+            };
+
+            uiElements.locationButtons?.forEach(button => {
+                button.addEventListener('click', () => emitAdminAction('admin_update_location', { location: button.dataset.location }));
+            });
+            uiElements.directionButtons?.forEach(button => {
+                button.addEventListener('click', () => emitAdminAction('admin_update_direction', { direction: button.dataset.direction }));
+            });
+            uiElements.fuelButtons?.forEach(button => {
+                button.addEventListener('click', () => emitAdminAction('admin_update_fuel', { fuel_level: button.dataset.fuel }));
+            });
+            uiElements.sosButton?.addEventListener('click', () => emitAdminAction('admin_toggle_sos'));
+            uiElements.lowFuelButton?.addEventListener('click', () => emitAdminAction('admin_toggle_low_fuel'));
+            uiElements.discomfortButton?.addEventListener('click', () => emitAdminAction('admin_toggle_discomfort'));
+            console.debug("ADMIN: Button handlers attached.");
+        }
+
+        // --- Initial Setup ---
+        document.addEventListener('DOMContentLoaded', () => {
+             cacheAdminElements(); // Cache elements first
+             attachButtonHandlers(); // Then attach handlers
+             // Initial UI update is handled by the 'connect' listener after parsing state
+        });
+
+    </script>
+
+    <!-- Embed initial state securely for admin page -->
+    <script id="initialAdminStateData" type="application/json">
+        {{ current_state | tojson | safe }}
+    </script>
+
+</body>
+</html>

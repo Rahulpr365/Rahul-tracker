@@ -1,0 +1,220 @@
+2025-04-02 00:11:47 [INFO ] [TrackerApp] ============================== Application Starting Up ==============================
+2025-04-02 00:11:47 [INFO ] [TrackerApp] Initializing database schema...
+2025-04-02 00:11:47 [INFO ] [TrackerApp] Database already initialized. State row exists.
+2025-04-02 00:11:47 [INFO ] [TrackerApp] Database initialization complete.
+2025-04-02 00:11:47 [INFO ] [TrackerApp] Database initialized successfully.
+2025-04-02 00:11:47 [INFO ] [TrackerApp] Client connected: SID=zdXFipMfv_hv0PSwAAAB, IP=127.0.0.1
+2025-04-02 00:11:47 [INFO ] [TrackerApp] Client connected: SID=dLFl-BI-5lsDaOt5AAAD, IP=127.0.0.1
+2025-04-02 00:11:49 [INFO ] [TrackerApp] Client connected: SID=XWjue5cMSbLoIVp4AAAF, IP=127.0.0.1
+2025-04-02 00:11:54 [INFO ] [TrackerApp] Serving admin page request from 127.0.0.1
+2025-04-02 00:11:54 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:11:55 [INFO ] [TrackerApp] Client connected: SID=W0vTGC7jHleZMLgRAAAH, IP=127.0.0.1
+2025-04-02 00:12:04 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:12:04 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:12:04 [INFO ] [TrackerApp] Client connected: SID=MuvcgwWInEbDgr4MAAAJ, IP=127.0.0.1
+2025-04-02 00:12:08 [INFO ] [TrackerApp] Admin action 'update_location' received from SID=W0vTGC7jHleZMLgRAAAH, IP=127.0.0.1, Data={'current_location': 'Puthanpally'}
+2025-04-02 00:12:08 [INFO ] [TrackerApp] Database state updated successfully. Changes: {'last_updated': datetime.datetime(2025, 4, 2, 0, 12, 8, 503251), 'current_location': 'Puthanpally'}
+2025-04-02 00:12:08 [ERROR] [TrackerApp] App context teardown encountered an error: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:12:08 [ERROR] [TrackerApp] Unexpected error during update state: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:12:08 [ERROR] [TrackerApp] Admin action 'update_location' failed during processing.
+2025-04-02 00:12:12 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:12:12 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:12:12 [INFO ] [TrackerApp] Client connected: SID=G4usL8QWGdCZT1w9AAAL, IP=127.0.0.1
+2025-04-02 00:12:20 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_toggle_sos() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_toggle_sos() takes 0 positional arguments but 1 was given
+2025-04-02 00:12:24 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:12:24 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:12:24 [INFO ] [TrackerApp] Client connected: SID=f3PZhpBodYUQhxkoAAAN, IP=127.0.0.1
+2025-04-02 00:13:44 [INFO ] [TrackerApp] Admin action 'update_fuel' received from SID=W0vTGC7jHleZMLgRAAAH, IP=127.0.0.1, Data={'fuel_level': '1'}
+2025-04-02 00:13:44 [INFO ] [TrackerApp] Database state updated successfully. Changes: {'last_updated': datetime.datetime(2025, 4, 2, 0, 13, 44, 133500), 'fuel_level': 1}
+2025-04-02 00:13:44 [ERROR] [TrackerApp] App context teardown encountered an error: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:13:44 [ERROR] [TrackerApp] Unexpected error during update state: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:13:44 [ERROR] [TrackerApp] Admin action 'update_fuel' failed during processing.
+2025-04-02 00:13:48 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:13:48 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:13:48 [INFO ] [TrackerApp] Client connected: SID=iwd74KdgMfZdxT1eAAAP, IP=127.0.0.1
+2025-04-02 00:13:53 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_toggle_low_fuel() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_toggle_low_fuel() takes 0 positional arguments but 1 was given
+2025-04-02 00:13:56 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:13:56 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:13:56 [INFO ] [TrackerApp] Client connected: SID=HPwfa6uu4dKA1Ow5AAAR, IP=127.0.0.1
+2025-04-02 00:14:36 [INFO ] [TrackerApp] Admin action 'update_location' received from SID=W0vTGC7jHleZMLgRAAAH, IP=127.0.0.1, Data={'current_location': 'Anjangadi Bus Stop'}
+2025-04-02 00:14:36 [INFO ] [TrackerApp] Database state updated successfully. Changes: {'last_updated': datetime.datetime(2025, 4, 2, 0, 14, 36, 171113), 'current_location': 'Anjangadi Bus Stop'}
+2025-04-02 00:14:36 [ERROR] [TrackerApp] App context teardown encountered an error: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:14:36 [ERROR] [TrackerApp] Unexpected error during update state: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:14:36 [ERROR] [TrackerApp] Admin action 'update_location' failed during processing.
+2025-04-02 00:14:40 [INFO ] [TrackerApp] Serving admin page request from 127.0.0.1
+2025-04-02 00:14:40 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:14:40 [INFO ] [TrackerApp] Client connected: SID=XE_zDg2DDv3oV1WDAAAT, IP=127.0.0.1
+2025-04-02 00:16:57 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:16:59 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:16:59 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:36:15 [INFO ] [TrackerApp] ============================== Application Starting Up ==============================
+2025-04-02 00:36:15 [INFO ] [TrackerApp] Initializing database schema...
+2025-04-02 00:36:15 [INFO ] [TrackerApp] Database already initialized. State row exists.
+2025-04-02 00:36:15 [INFO ] [TrackerApp] Database initialization complete.
+2025-04-02 00:36:15 [INFO ] [TrackerApp] Database initialized successfully.
+2025-04-02 00:36:40 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:36:42 [INFO ] [TrackerApp] Client connected: SID=SRNrmQCAoIjsv6BYAAAB, IP=127.0.0.1
+2025-04-02 00:36:51 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:36:51 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:36:51 [INFO ] [TrackerApp] Client connected: SID=HHKG0zZKXe7cYH3GAAAD, IP=127.0.0.1
+2025-04-02 00:36:53 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:36:53 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:36:53 [INFO ] [TrackerApp] Client connected: SID=k3dMjXRa-pLuYevXAAAF, IP=127.0.0.1
+2025-04-02 00:36:54 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:36:54 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:36:54 [INFO ] [TrackerApp] Client connected: SID=knE9870E7t6bQWFcAAAH, IP=127.0.0.1
+2025-04-02 00:37:10 [INFO ] [TrackerApp] Serving admin page request from 127.0.0.1
+2025-04-02 00:37:10 [INFO ] [TrackerApp] Client connected: SID=YVgv6eY40p357xy8AAAJ, IP=127.0.0.1
+2025-04-02 00:37:13 [INFO ] [TrackerApp] Admin action 'update_location' received from SID=YVgv6eY40p357xy8AAAJ, IP=127.0.0.1, Data={'current_location': 'Home'}
+2025-04-02 00:37:13 [INFO ] [TrackerApp] Database state updated successfully. Changes: {'last_updated': datetime.datetime(2025, 4, 2, 0, 37, 13, 570148), 'current_location': 'Home'}
+2025-04-02 00:37:13 [ERROR] [TrackerApp] App context teardown encountered an error: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:37:13 [ERROR] [TrackerApp] Unexpected error during update state: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:37:13 [ERROR] [TrackerApp] Admin action 'update_location' failed during processing.
+2025-04-02 00:37:16 [INFO ] [TrackerApp] Admin action 'update_fuel' received from SID=YVgv6eY40p357xy8AAAJ, IP=127.0.0.1, Data={'fuel_level': '3'}
+2025-04-02 00:37:16 [INFO ] [TrackerApp] Database state updated successfully. Changes: {'last_updated': datetime.datetime(2025, 4, 2, 0, 37, 16, 752476), 'fuel_level': 3}
+2025-04-02 00:37:16 [ERROR] [TrackerApp] App context teardown encountered an error: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:37:16 [ERROR] [TrackerApp] Unexpected error during update state: Server.emit() got an unexpected keyword argument 'broadcast'
+Traceback (most recent call last):
+  File "C:\Users\Rahul\Downloads\students\app.py", line 298, in update_state
+    socketio.emit('state_update', new_full_state, broadcast=True)
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+2025-04-02 00:37:16 [ERROR] [TrackerApp] Admin action 'update_fuel' failed during processing.
+2025-04-02 00:37:20 [INFO ] [TrackerApp] Serving index page request from 127.0.0.1
+2025-04-02 00:37:20 [ERROR] [TrackerApp] Unhandled SocketIO Error: handle_disconnect() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "C:\Users\Rahul\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_socketio\__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+          ^^^^^^^^^^^^^^
+TypeError: handle_disconnect() takes 0 positional arguments but 1 was given
+2025-04-02 00:37:20 [INFO ] [TrackerApp] Client connected: SID=_DvkiS5eg6wqwNV4AAAL, IP=127.0.0.1
